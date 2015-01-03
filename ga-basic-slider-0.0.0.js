@@ -1,8 +1,11 @@
-/*
+/*!
  * gaBasicSlider v0.0.0
- *
- * Greg Arutunyan
- *
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ * 
+ * Copyright (c) 2015 Greg Arutunyan
+ */
+
+/*
  * The attribute ( data-ga-bs-bypass-url="http://www.any-url.com" )
  *
  * If the attribute data-ga-bs-bypass is added to one or more indicators
