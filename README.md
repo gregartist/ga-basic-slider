@@ -82,7 +82,7 @@ All you need to do to use custom indicators is just create the markup for it ins
 </p>
 ```
 
-Custom indicators can also **link to a page instead of animating the slider**. Do do this use the `data-ga-bs-bypass-url` attribute.
+Custom indicators can also **link to a page instead of animating the slider**. To do this use the `data-ga-bs-bypass-url` attribute.
 
 ```html
 <span data-ga-bs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
