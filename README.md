@@ -10,7 +10,7 @@ I created gaBasicSlider for myself so that I could re-use it with any project. I
 
 #### A Typical Setup
 
-gaBasicSlider does not rely on markup order to work so the markup in this example could be rearranged to best suite the needs of the project. 
+gaBasicSlider does not rely on markup order to work, so the markup in this example could be rearranged to best suite the needs of the project. 
 
 ```html
 <div class="slider">
@@ -75,11 +75,17 @@ When creating the slider indicators gaBasicSlider will output this markup by def
 All you need to do to use custom indicators is just create the markup for it inside your indicator element. When gaBasicSlider sees you've created markup for the indicators it will only attach click handlers to your existing markup. Note when using custom indicators **you will need to make sure the number of indicators match the number of slides**.
 
 ```html
-    <p id="slider-indicators" class="slider-indicators">
-        <span>Custom Indicator 1</span>
-        <span>Custom Indicator 2</span>
-        <span>Custom Indicator 3</span>
-    </p>
+<p id="slider-indicators" class="slider-indicators">
+    <span>Custom Indicator 1</span>
+    <span>Custom Indicator 2</span>
+    <span>Custom Indicator 3</span>
+</p>
+```
+
+Custom indicators can also **link to a page instead of animating the slider**. Do do this use the `data-ga-bs-bypass-url` attribute.
+
+```html
+<span data-ga-bs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
 ```
 
 #### Turn animation on and off
