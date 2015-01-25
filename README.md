@@ -1,12 +1,12 @@
 # gaBasicSlider
 
-A jQuery slider plug-in that's made to be **re-usable**.
+A jQuery slider plug-in that's made to be **exceedingly styleable**.
 
 ```javascript
 $('#slider').gaBasicSlider();
 ```
 
-I created gaBasicSlider for myself so that I could re-use it with any project. It's completely devoid of styling but instead adds slider capabilities to existing HTML and CSS.
+I tried to make gaBasicSlider as independent of markup and css as I could. This gives you the power to apply this slider to any design you can come up with.
 
 #### A Typical Setup
 
