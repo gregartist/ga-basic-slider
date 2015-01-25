@@ -1,6 +1,6 @@
 # gaBasicSlider
 
-A jQuery slider plug-in that's made to be **exceedingly styleable**.
+A jQuery slider plug-in that's made to be **styleable**.
 
 ```javascript
 $('#slider').gaBasicSlider();
