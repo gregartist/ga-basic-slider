@@ -42,6 +42,13 @@ $('#slider').gaBasicSlider({
     indicators : $('#slider-indicators') // indicators will be generated at this location
 });
 ```
+The markup for the next and previous buttons can be as simple or as complicated as you like. The location of the markup in the html is also in your control. All gaBasicSlider does is add click events to the selector you pass-in. It's important to note that anything else added to the markup in addition to the selector passed into gaBasicSlider, is yours to do with as you please, for example using font glyphs inside the markup to add left and right arrow graphics.
+
+```html
+    <span id="slider-previous" class="slider-previous"></span>
+    <span id="slider-next" class="slider-next"></span>
+```
+
 
 #### gaBasicSlider Options
 
