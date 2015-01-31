@@ -10,8 +10,6 @@ I tried to make gaBasicSlider as independent of markup and css as I could. This 
 
 #### A Typical Setup
 
-gaBasicSlider does not rely on markup order to work, so the markup in this example could be rearranged to best suite the needs of the project. 
-
 ```html
 <div class="slider">
     <span id="slider-previous" class="slider-previous"></span>
@@ -33,6 +31,16 @@ gaBasicSlider does not rely on markup order to work, so the markup in this examp
         indicators : $('#slider-indicators')
     });
 </script>
+```
+
+In order to achieve markup independence we need to tell gaBasicSlider where to find it's parts. If you look at the code example above you'll see that we are passing into gaBasicSlider jQuery selectors for next and previous buttons and the selector for where it will generate indicators.
+
+```javascript
+$('#slider').gaBasicSlider({
+    btnNext : $('#slider-next'), // adds click events for the next button
+    btnPrevious : $('#slider-previous'),// adds click events for the previous button
+    indicators : $('#slider-indicators') // indicators will be generated at this location
+});
 ```
 
 #### gaBasicSlider Options
