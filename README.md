@@ -8,12 +8,14 @@ $('#slider').gaBasicSlider();
 
 I tried to make gaBasicSlider as independent of markup and css as I could. This gives you the power to apply this slider to any design you can come up with.
 
-#### A Typical Setup
+## A typical setup
+
+In the following text I'll breakdown this code into it's individual parts and show how I achieve markup independence.
 
 ```html
 <div class="slider">
-    <span id="slider-previous" class="slider-previous"></span>
-    <span id="slider-next" class="slider-next"></span>
+    <span id="slider-previous" class="slider-previous">&larr;</span>
+    <span id="slider-next" class="slider-next">&rarr;</span>
 
     <ul id="slider" class="slider-items">
         <li>...</li>
@@ -33,24 +35,116 @@ I tried to make gaBasicSlider as independent of markup and css as I could. This 
 </script>
 ```
 
-In order to achieve markup independence we need to tell gaBasicSlider where to find it's parts. If you look at the code example above you'll see that we are passing into gaBasicSlider jQuery selectors for next and previous buttons and the selector for where it will generate indicators.
+### The slider markup
 
-```javascript
-$('#slider').gaBasicSlider({
-    btnNext : $('#slider-next'), // adds click events for the next button
-    btnPrevious : $('#slider-previous'),// adds click events for the previous button
-    indicators : $('#slider-indicators') // indicators will be generated at this location
-});
-```
-The markup for the next and previous buttons can be as simple or as complicated as you like. The location of the markup in the html is also in your control. All gaBasicSlider does is add click events to the selector you pass-in. It's important to note that anything else added to the markup in addition to the selector passed into gaBasicSlider, is yours to do with as you please, for example using font glyphs inside the markup to add left and right arrow graphics.
+First let's look at the markup for the slider itself.
 
 ```html
-    <span id="slider-previous" class="slider-previous"></span>
-    <span id="slider-next" class="slider-next"></span>
+<ul id="slider" class="slider-items">
+    <li>...</li>
+    <li>...</li>
+    <li>...</li>
+</ul>
+```
+
+gaBasicSlider requires that the markup for the slider have a parent child relationship with the same validation requirements as an unordered list. Because I don't enforce any tag requirements you can use DIVs if that best suits your needs.
+
+```html
+<!-- This markup for the slider will work just as well -->
+
+<div id="slider" class="slider-items">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+</div>
+```
+gaBasicSlider adds the minimum amount of CSS to place each child element on top of each other and too animate between them. *Note* I'm using **hardware accelerated CSS for animation** and fallback to jQuery animation for older browsers.
+
+At this point we can turn the slider on with the following javascript.
+
+```html
+<script>
+    $('#slider').gaBasicSlider();
+</script>
+```
+
+### Adding navigation
+
+gaBasicSlider can add optional navigation elements. One of which is next and previous buttons.
+
+#### Next and previous buttons
+
+ I leave the position and look of these buttons entirely up to you. All gaBasicSlider does is add click events to the markup you pass in.
+
+```html
+<span id="slider-previous" class="slider-previous">&larr;</span>
+<span id="slider-next" class="slider-next">&rarr;</span>
+```
+
+In this example I'm wrapping the slider and buttons with a `div` so that I can use CSS to position the buttons on top of the slider. But gaBasicSlider gives you the power to arrange the markup in any way that best suits your design, in other words your not required to use this setup.
+
+```html
+<div class="slider">
+    <span id="slider-previous" class="slider-previous">&larr;</span>
+    <span id="slider-next" class="slider-next">&rarr;</span>
+
+    <ul id="slider" class="slider-items">
+        <li>...</li>
+        <li>...</li>
+        <li>...</li>
+    </ul>
+</div>
+```
+
+The javascript will now need to add an object with selectors for the next and previous buttons.
+
+```html
+<script>
+    $('#slider').gaBasicSlider({
+        btnNext : $('#slider-next'),
+        btnPrevious : $('#slider-previous'))
+    });
+</script>
+```
+
+#### Indicators
+
+By default when indicator are activated gaBasicSlider will output this markup `<span class="ga-bs-indicator">&bull;</span>` for each child of the slider. Clicking an indicator will animate the slider to that index. The class `ga-bs-active` is also added to the current indicator to assist in styling.
+
+```html
+<!-- Markup when opting for default behavior -->
+
+<span id="slider-indicators" class="slider-indicators"></span>
+
+<!-- for a slider that has three slides gaBasicSlider will generate this markup  -->
+
+<span id="slider-indicators" class="slider-indicators">
+    <span class="ga-bs-indicator ga-bs-active">&bull;</span>
+    <span class="ga-bs-indicator">&bull;</span>
+    <span class="ga-bs-indicator">&bull;</span>
+</span>
+```
+
+#### Custom Indicators
+
+All you need to do to use custom indicators is just create the markup for it inside your indicator element. When gaBasicSlider sees you've created markup for the indicators it will only attach click handlers to your existing markup. *Note* when using custom indicators **you will need to make sure the number of indicators match the number of slides**.
+
+```html
+<span id="slider-indicators" class="slider-indicators">
+    <span>Custom Indicator 1</span>
+    <span>Custom Indicator 2</span>
+    <span>Custom Indicator 3</span>
+</span>
+```
+
+Custom indicators can also **link to a URL instead of animating the slider**. To do this use the `data-ga-bs-bypass-url` attribute.
+
+```html
+<span data-ga-bs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
 ```
 
 
-#### gaBasicSlider Options
+## gaBasicSlider options
 
 This table shows each option of gaBasicSlider as well as the variable type of each option and what it's value will default too it the option is omitted.
 
@@ -77,37 +171,12 @@ $('#slider').gaBasicSlider({
     touchBounceBackThreshold : 80
 });
 ```
-#### Indicators
 
-When creating the slider indicators gaBasicSlider will output this markup by default:
+## Turn animation on and off
 
-```html
-<span class="ga-bs-indicator">&bull;</span>
-```
-
-#### Custom Indicators
-
-All you need to do to use custom indicators is just create the markup for it inside your indicator element. When gaBasicSlider sees you've created markup for the indicators it will only attach click handlers to your existing markup. Note when using custom indicators **you will need to make sure the number of indicators match the number of slides**.
-
-```html
-<p id="slider-indicators" class="slider-indicators">
-    <span>Custom Indicator 1</span>
-    <span>Custom Indicator 2</span>
-    <span>Custom Indicator 3</span>
-</p>
-```
-
-Custom indicators can also **link to a page instead of animating the slider**. To do this use the `data-ga-bs-bypass-url` attribute.
-
-```html
-<span data-ga-bs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
-```
-
-#### Turn animation on and off
-
-Animation can also be turned on and off by using the following:
+Animation can also be turned on and off using this simple API.
 
 ```javascript
-$('#your-slider').gaBasicSlider('stop'); // turn animation off
-$('#your-slider').gaBasicSlider('start');; // turn animation on
+$('#slider').gaBasicSlider('stop'); // turn animation off
+$('#slider').gaBasicSlider('start');; // turn animation on
 ```
