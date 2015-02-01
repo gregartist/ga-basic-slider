@@ -8,6 +8,12 @@ $('#slider').gaBasicSlider();
 
 I tried to make gaBasicSlider as independent of markup and css as I could. This gives you the power to apply this slider to any design you can come up with.
 
+**gaBasicSlider features:**
+
+- Responsive
+- Touch navigation
+- Hardware accelerated animation
+
 ## A typical setup
 
 In the following text I'll breakdown this code into it's individual parts and show how I achieve markup independence.
@@ -47,7 +53,7 @@ First let's look at the markup for the slider itself.
 </ul>
 ```
 
-gaBasicSlider requires that the markup for the slider have a parent child relationship with the same validation requirements as an unordered list. Because I don't enforce any tag requirements you can use DIVs if that best suits your needs.
+gaBasicSlider needs the slider markup to have a parent child relationship with the same validation requirements as an unordered list. Because I don't enforce any tag restrictions you can use divs if that best suits your needs.
 
 ```html
 <!-- This markup for the slider will work just as well -->
@@ -60,7 +66,7 @@ gaBasicSlider requires that the markup for the slider have a parent child relati
 ```
 gaBasicSlider adds the minimum amount of CSS to position the slides on top of each other and too animate between them. *Note* I'm using **hardware accelerated CSS for animation**, and fallback to jQuery animation for older browsers.
 
-At this point we can turn the slider on with the following javascript.
+At this point we can turn the slider on with the following JavaScript.
 
 ```html
 <script>
@@ -70,7 +76,7 @@ At this point we can turn the slider on with the following javascript.
 
 ### Adding navigation
 
-gaBasicSlider can add optional navigation elements. One of which is next and previous buttons.
+gaBasicSlider can add optional navigation elements, one of which is next and previous buttons.
 
 #### Next and previous buttons
 
@@ -81,7 +87,7 @@ gaBasicSlider can add optional navigation elements. One of which is next and pre
 <span id="slider-next" class="slider-next">&rarr;</span>
 ```
 
-In this example I'm wrapping the slider and buttons with a `div` so that I can use CSS to position the buttons on top of the slider. But gaBasicSlider gives you the power to arrange the markup in any way that best suits your design, in other words your not required to use this setup.
+For this example I wanted to design the next and previous buttons on top of the slider. Because gaBasicSlider has the freedom to move it's parts around the html, we can achieve our design pretty easily. And I did so by wrapping the slider and buttons with a div so that I could use CSS to position them on top of the slider. 
 
 ```html
 <div class="slider">
@@ -96,7 +102,7 @@ In this example I'm wrapping the slider and buttons with a `div` so that I can u
 </div>
 ```
 
-We now need to use a Javascript object to tell gaBasicSlider about the next and previous buttons.
+We now need to use a JavaScript object to tell gaBasicSlider about the next and previous buttons.
 
 ```html
 <script>
@@ -109,7 +115,13 @@ We now need to use a Javascript object to tell gaBasicSlider about the next and 
 
 #### Indicators
 
-By default when indicator are activated gaBasicSlider will output this markup `<span class="ga-bs-indicator">&bull;</span>` for each child of the slider. Clicking an indicator will animate the slider to that index. The class `ga-bs-active` is also added to the current indicator to assist in styling.
+By default when indicators are activated gaBasicSlider will output this markup for each child of the slider.
+
+```html
+<span class="ga-bs-indicator">&bull;</span>
+```
+
+Clicking an indicator will animate the slider to that index. The class `ga-bs-active` is also added to the current indicator to assist in styling.
 
 ```html
 <!-- Markup when opting for default behavior -->
@@ -140,7 +152,11 @@ All you need to do to use custom indicators is just create the markup for it ins
 Custom indicators can also **link to a URL instead of animating the slider**. To do this use the `data-ga-bs-bypass-url` attribute.
 
 ```html
-<span data-ga-bs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
+<span id="slider-indicators" class="slider-indicators">
+    <span>Custom Indicator 1</span>
+    <span data-ga-bs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
+    <span>Custom Indicator 3</span>
+</span>
 ```
 
 
@@ -156,7 +172,6 @@ This table shows each option of gaBasicSlider as well as the variable type of ea
 | indicators               | object (jQuery)       | null          |
 | btnNext                  | object (jQuery)       | null          |
 | btnPrevious              | object (jQuery)       | null          |
-| touchBounceBackThreshold | number (pixels)       | 80            |
 
 Here is what it looks like when we set the options in JavaScript.
 
@@ -167,14 +182,13 @@ $('#slider').gaBasicSlider({
     animationTime : 300,
     indicators : $('#slider-indicators'),
     btnNext : $('#slider-next'),
-    btnPrevious : $('#slider-previous'),
-    touchBounceBackThreshold : 80
+    btnPrevious : $('#slider-previous')
 });
 ```
 
-## Turn animation on and off
+## Simple API
 
-Animation can also be turned on and off using this simple API.
+Animation can be turned on and off using this simple API.
 
 ```javascript
 $('#slider').gaBasicSlider('stop'); // turn animation off
