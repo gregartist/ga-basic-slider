@@ -96,7 +96,7 @@ In this example I'm wrapping the slider and buttons with a `div` so that I can u
 </div>
 ```
 
-The javascript will now need to add an object with selectors for the next and previous buttons.
+We now need to use a Javascript object to tell gaBasicSlider about the next and previous buttons.
 
 ```html
 <script>
