@@ -58,7 +58,7 @@ gaBasicSlider requires that the markup for the slider have a parent child relati
     <div>...</div>
 </div>
 ```
-gaBasicSlider adds the minimum amount of CSS to place each child element on top of each other and too animate between them. *Note* I'm using **hardware accelerated CSS for animation** and fallback to jQuery animation for older browsers.
+gaBasicSlider adds the minimum amount of CSS to position the slides on top of each other and too animate between them. *Note* I'm using **hardware accelerated CSS for animation**, and fallback to jQuery animation for older browsers.
 
 At this point we can turn the slider on with the following javascript.
 
