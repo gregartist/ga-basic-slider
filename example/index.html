@@ -3,137 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image/x-icon" href="http://gregartist.com/images/favicon.ico">
-    <title>gaBasicSlider</title>
-    <link rel="stylesheet" href="css/presentation.css">
-    <style>
-        /* NOTE these styles are for demonstration only,
-         * they are NOT required by gaBasicSlider to work */
-
-        .slider {
-            padding: 0;
-            margin: 0;
-        }
-
-        .slider li,
-        .slider div {
-            padding: 10px 30px;
-            margin: 0;
-            background: #ededed;
-        }
-        
-        .slider-paginate,
-        .slider-indicators {
-            color: #ccc;
-        }
-        
-        .slider-paginate .ga-bs-active,
-        .slider-indicators .ga-bs-active {
-            color: black;
-        }
-    </style>
+    <title>gaBasicSlider 0.0.0</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
-
-    <h1 class="title">gaBasicSlider</h1>
     
-    <hr>
-
-    <h2>Example 1</h2>
-
-    <p>This example is using custom indicators.</p>
-
-    <div id="example-1" class="slider">
-        <div>
-            <h2>Proin Quis Tortor Orci. Etiam At</h2>
-            <p>Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet.</p>
-        </div>
-        <div>
-            <h2>Nullam In Dui Mauris. Vivamus Hendrerit Arcu</h2>
-            <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam.</p>
-        </div>
-        <div>
-            <h2>Lorem Ipsum Dolor</h2>
-            <p>Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper.</p>
-        </div>
-    </div>
+<div class="container">
     
-    <p id="example-1-indicators" class="slider-indicators">
-        <span>custom indicator 1</span>
-        <span>custom indicator 2</span>
-        <span>custom indicator 3</span>
-    </p>
-
-    <hr>
-
-    <h2>Example 2</h2>
-
-    <p>I've initialized this example with <code>animate: false</code>. Now the slider won't animate unless there is a user initiated click.</p>
-
-    <p>
-        <input id="example-2-start" type="button" value="start">
-        <code>$('#your-slider').gaBasicSlider('start');</code>
-    </p>
-    <p>
-        <input id="example-2-stop" type="button" value="stop">
-        <code>$('#your-slider').gaBasicSlider('stop');</code>
-    </p>
+    <h1>Unstyled <small>out of the box</small></h1>
+    <p class="lead">As you can see gaBasicSlider comes unstyled out of the box, ready to be designed.</p>
     
-    <ul id="example-2" class="slider">
+    <span id="unstyled-previous">&larr;</span>
+    <span id="unstyled-next">&rarr;</span>
+
+    <ul id="unstyled">
         <li>
-            <h2>Proin Quis Tortor Orci. Etiam At</h2>
-            <p>Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet.</p>
+            <span class="btn btn-default btn-lg">
+                And of course the first is here.
+            </span>
         </li>
         <li>
-            <h2>Nullam In Dui Mauris. Vivamus Hendrerit Arcu</h2>
-            <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam.</p>
+            <span class="btn btn-default btn-lg">
+                The second comes later.
+            </span>
         </li>
         <li>
-            <h2>Lorem Ipsum Dolor</h2>
-            <p>Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper.</p>
+            <span class="btn btn-default btn-lg">
+                Followed by none other then three.
+            </span>
         </li>
     </ul>
-
-    <p id="example-2-indicators" class="slider-indicators"></p>
-
-    <p class="slider-paginate">
-        <span id="example-2-previous">Previous</span>
-        <span id="example-2-next">Next</span>
-    </p>
+    
+    <span id="unstyled-indicators">
+        <!-- put html here to create custom indicators -->
+    </span>
+    
+    <hr>
+    
+    <h2>Simple API</h2>
+    
+    <div id="unstyled-alert" class="alert alert-info" role="alert">Animation is started</div>
+    
+    <div class="btn-group">
+      <button id="unstyled-start" type="button" class="btn btn-primary">Start Animation</button>
+      <button id="unstyled-stop" type="button" class="btn btn-primary">Stop Animation</button>
+    </div>
     
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="../ga-basic-slider-0.0.0-min.js"></script>
-  
+    <script src="../ga-basic-slider-0.0.0.js"></script>
+    
     <script>
-        $(document).ready(function(){
-
-            // Globaly change defaults
-            $.fn.gaBasicSlider.defaults.animationDelay = 1000;
-
-            // Example 1
-            
-            $('#example-1').gaBasicSlider({
-                indicators : $('#example-1-indicators')
-            });
-            
-            // Example 2
-
-            $('#example-2').gaBasicSlider({
-                btnNext : $('#example-2-next'),
-                btnPrevious : $('#example-2-previous'),
-                indicators : $('#example-2-indicators'),
-                animate: false
-            });
-
-            $('#example-2-start').on('click', function(){
-                $('#example-2').gaBasicSlider('start');
-            });
+        $('#unstyled').gaBasicSlider({
+            btnNext : $('#unstyled-next'),
+            btnPrevious : $('#unstyled-previous'),
+            indicators : $('#unstyled-indicators')
+        });
         
-            $('#example-2-stop').on('click', function(){
-                $('#example-2').gaBasicSlider('stop');
-            });
-            
+        // API
+        
+        $('#unstyled-start').on('click', function(){
+            $('#unstyled').gaBasicSlider('start');
+            $('#unstyled-alert').text('Animation is started');
+        });
+    
+        $('#unstyled-stop').on('click', function(){
+            $('#unstyled').gaBasicSlider('stop');
+            $('#unstyled-alert').text('Animation has stoped');
         });
     </script>
-  
+
+</div>
+
 </body>
 </html>
