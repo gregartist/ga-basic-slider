@@ -5,13 +5,7 @@
  * Copyright (c) 2015 Greg Arutunyan
  */
 
-/*
- * The attribute ( data-ga-bs-bypass-url="http://www.any-url.com" )
- *
- * If the attribute data-ga-bs-bypass is added to one or more indicators
- * then clicking that indicator will go the the url specified in the attribute
- * instead of sliding to that indicator's index.
- * 
+/* 
  * @example
  *
  * initializing the plug-in
@@ -378,7 +372,8 @@
             // prepare the parent
             $parent.css({
                 'position': 'relative',
-                'overflow': 'hidden'
+                'overflow': 'hidden',
+                'padding' : '0'
             });
     
             // children mouse events
