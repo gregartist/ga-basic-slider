@@ -8,7 +8,7 @@ $('#slider').gaBasicSlider();
 
 If you want to design your own slider and can build it in html and css, gaBasicSlider can animate it and give you API controls into your own design.
 
-**gaBasicSlider features:**
+**Note worthy features:**
 
 - Responsive
 - Touch navigation
@@ -16,7 +16,7 @@ If you want to design your own slider and can build it in html and css, gaBasicS
 
 ## A typical setup
 
-In the following text I'll breakdown this code into it's individual parts and show how I achieve markup independence.
+In the following text I'll breakdown this code into it's individual parts.
 
 ```html
 <div class="slider">
@@ -102,7 +102,7 @@ For this example I wanted to design the next and previous buttons on top of the 
 </div>
 ```
 
-We now need to use a JavaScript object to tell gaBasicSlider about the next and previous buttons.
+Now we pass in the location of the next and previous buttons to gaBasicSlider.
 
 ```html
 <script>
