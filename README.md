@@ -6,7 +6,7 @@ A jQuery slider plug-in that's made to be **styleable**.
 $('#slider').gaBasicSlider();
 ```
 
-I tried to make gaBasicSlider as independent of markup and css as I could. This gives you the power to apply this slider to any design you can come up with.
+If you want to design your own slider and can build it in html and css, gaBasicSlider can animate it and give you API controls into your own design.
 
 **gaBasicSlider features:**
 
