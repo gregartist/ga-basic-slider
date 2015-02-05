@@ -80,14 +80,14 @@ gaBasicSlider can add optional navigation elements, one of which is next and pre
 
 #### Next and previous buttons
 
- I leave the position and look of these buttons entirely up to you, all gaBasicSlider does is add click events.
+ I leave the position and look of these buttons entirely up to you, all gaBasicSlider does is add click handlers.
 
 ```html
 <span id="slider-previous" class="slider-previous">&larr;</span>
 <span id="slider-next" class="slider-next">&rarr;</span>
 ```
 
-I wrote this markup in-order to design the next and previous buttons on top of the slider. The buttons would be positioned relative to .slider using `position:absolute;`.
+I wrote this markup in-order to design the next and previous buttons on top of the slider. The buttons would be positioned relative to `.slider` using `position:absolute;`.
 
 ```html
 <div class="slider">
@@ -144,6 +144,8 @@ All you need to do to use custom indicators is just create the markup for it ins
     <span>Custom Indicator 3</span>
 </div>
 ```
+
+##### Link to a URL
 
 Custom indicators can also **link to a URL instead of animating the slider**. To do this use the `data-ga-bs-bypass-url` attribute.
 
