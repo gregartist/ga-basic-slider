@@ -29,7 +29,7 @@ In the following text I'll breakdown this code into it's individual parts.
         <li>...</li>
     </ul>
 
-    <span id="slider-indicators" class="slider-indicators"></span>
+    <div id="slider-indicators" class="slider-indicators"></div>
 </div>
 
 <script>
@@ -56,7 +56,7 @@ First let's look at the markup for the slider itself.
 gaBasicSlider needs the slider markup to have a parent child relationship with the same validation requirements as an unordered list. Because I don't enforce any tag restrictions you can use divs if that best suits your needs.
 
 ```html
-<!-- This markup for the slider will work just as well -->
+<!-- Divs would work just as well -->
 
 <div id="slider" class="slider-items">
     <div>...</div>
@@ -80,14 +80,14 @@ gaBasicSlider can add optional navigation elements, one of which is next and pre
 
 #### Next and previous buttons
 
- I leave the position and look of these buttons entirely up to you. All gaBasicSlider does is add click events to the markup you pass in.
+ I leave the position and look of these buttons entirely up to you, all gaBasicSlider does is add click events.
 
 ```html
 <span id="slider-previous" class="slider-previous">&larr;</span>
 <span id="slider-next" class="slider-next">&rarr;</span>
 ```
 
-For this example I wanted to design the next and previous buttons on top of the slider. Because gaBasicSlider has the freedom to move it's parts around the html, we can achieve our design pretty easily. And I did so by wrapping the slider and buttons with a div so that I could use CSS to position them on top of the slider. 
+I wrote this markup in-order to design the next and previous buttons on top of the slider. The buttons would be positioned relative to .slider using `position:absolute;`.
 
 ```html
 <div class="slider">
@@ -102,7 +102,7 @@ For this example I wanted to design the next and previous buttons on top of the 
 </div>
 ```
 
-Now we pass in the location of the next and previous buttons to gaBasicSlider.
+Now we pass in the next and previous buttons to gaBasicSlider.
 
 ```html
 <script>
@@ -115,48 +115,44 @@ Now we pass in the location of the next and previous buttons to gaBasicSlider.
 
 #### Indicators
 
-By default when indicators are activated gaBasicSlider will output this markup for each child of the slider.
+When using default indicators gaBasicSlider outputs this HTML for each slide.
 
 ```html
 <span class="ga-bs-indicator">&bull;</span>
 ```
 
-Clicking an indicator will animate the slider to that index. The class `ga-bs-active` is also added to the current indicator to assist in styling.
+The class `ga-bs-active` is added to the active indicator.
 
 ```html
-<!-- Markup when opting for default behavior -->
+<!-- if the slider is on the second slide -->
 
-<span id="slider-indicators" class="slider-indicators"></span>
-
-<!-- for a slider that has three slides gaBasicSlider will generate this markup  -->
-
-<span id="slider-indicators" class="slider-indicators">
+<div id="slider-indicators" class="slider-indicators">
+    <span class="ga-bs-indicator">&bull;</span>
     <span class="ga-bs-indicator ga-bs-active">&bull;</span>
     <span class="ga-bs-indicator">&bull;</span>
-    <span class="ga-bs-indicator">&bull;</span>
-</span>
+</div>
 ```
 
 #### Custom Indicators
 
-All you need to do to use custom indicators is just create the markup for it inside your indicator element. When gaBasicSlider sees you've created markup for the indicators it will only attach click handlers to your existing markup. *Note* when using custom indicators **you will need to make sure the number of indicators match the number of slides**.
+All you need to do to use custom indicators is just create the markup for it inside your indicator element. When gaBasicSlider sees you've created markup for the indicators it will only attach click handlers. *Note* when using custom indicators **you will need to make sure the number of indicators match the number of slides**.
 
 ```html
-<span id="slider-indicators" class="slider-indicators">
+<div id="slider-indicators" class="slider-indicators">
     <span>Custom Indicator 1</span>
     <span>Custom Indicator 2</span>
     <span>Custom Indicator 3</span>
-</span>
+</div>
 ```
 
 Custom indicators can also **link to a URL instead of animating the slider**. To do this use the `data-ga-bs-bypass-url` attribute.
 
 ```html
-<span id="slider-indicators" class="slider-indicators">
+<div id="slider-indicators" class="slider-indicators">
     <span>Custom Indicator 1</span>
     <span data-ga-bs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
     <span>Custom Indicator 3</span>
-</span>
+</div>
 ```
 
 
