@@ -5,6 +5,110 @@
     <link rel="shortcut icon" type="image/x-icon" href="http://gregartist.com/images/favicon.ico">
     <title>gaBasicSlider 0.0.0</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
+    <style type="text/css" media="screen">
+        /* Basic slider */
+        
+        .basic-slider {
+            position: relative;
+        }
+        
+        /* navigation */
+        
+        .basic-slider-previous,
+        .basic-slider-next {
+            display: none;
+            width: 30px;
+            height: 30px;
+            margin-top: -15px;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: 5;
+            font-size: 19px;
+            line-height: 30px;
+            text-align: right;
+            color: white;
+            color: rgba(255,255,255,0.4);
+            border-radius: 0 3px 3px 0;
+        }
+        
+        .basic-slider-next {
+            left: auto;
+            right: 0;
+            text-align: left;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .basic-slider:hover .basic-slider-previous,
+        .basic-slider:hover .basic-slider-next {
+            display: block;
+        }
+        
+        .basic-slider-previous:hover,
+        .basic-slider-next:hover {
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .basic-slider-previous.ga-bs-active,
+        .basic-slider-next.ga-bs-active {
+            color: white;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* the slides */
+        
+        .basic-slider-items li {
+            height: 130px;
+            background: #AB9A52;
+            border-radius: 3px;
+            text-align: center;
+        }
+        
+        .basic-slider-items .h3 {
+            display: table-cell;
+            width: 2000px;
+            height: 130px;
+            padding: 40px;
+            vertical-align: middle;
+            text-align: center;
+            color: white;
+        }
+        
+        .basic-slider-items li:nth-child(2) {
+            background: #E8BA67;
+        }
+        
+        .basic-slider-items li:nth-child(3) {
+            background: #D68F4F;
+        }
+        
+        /* indicators */
+        
+        .basic-slider-indicators {
+            text-align: center;
+        }
+        
+        .basic-slider-indicators .ga-bs-indicator {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            margin: 0 1px;
+            font-size: 40px;
+            line-height: 24px;
+            text-align: center;
+            color: #a7a7a7;
+        }
+        
+        .basic-slider-indicators .ga-bs-indicator:hover,
+        .basic-slider-indicators .ga-bs-active {
+            color: orange;
+        }
+        
+        .basic-slider-indicators .ga-bs-indicator:hover {
+            color: #7d7d7d;
+        }
+    </style>
 </head>
 <body>
     
@@ -13,13 +117,13 @@
     <h1>Unstyled <small>out of the box</small></h1>
     <p class="lead">As you can see gaBasicSlider comes unstyled out of the box, ready to be designed.</p>
     
-    <span id="unstyled-previous">&larr;</span>
-    <span id="unstyled-next">&rarr;</span>
+    <span id="unstyled-slider-previous">&larr;</span>
+    <span id="unstyled-slider-next">&rarr;</span>
 
-    <ul id="unstyled">
+    <ul id="unstyled-slider">
         <li>
             <span class="btn btn-default btn-lg">
-                And of course the first is here.
+                "Hi, I'm the first slide." said the slide.
             </span>
         </li>
         <li>
@@ -34,45 +138,90 @@
         </li>
     </ul>
     
-    <span id="unstyled-indicators">
+    <div id="unstyled-slider-indicators">
         <!-- put html here to create custom indicators -->
-    </span>
-    
+    </div>
+        
     <hr>
     
     <h2>Simple API</h2>
     
-    <div id="unstyled-alert" class="alert alert-info" role="alert">Animation is started</div>
+    <div id="unstyled-slider-alert" class="alert alert-info" role="alert">Animation is on.</div>
     
     <div class="btn-group">
-      <button id="unstyled-start" type="button" class="btn btn-primary">Start Animation</button>
-      <button id="unstyled-stop" type="button" class="btn btn-primary">Stop Animation</button>
+      <button id="unstyled-slider-start" type="button" class="btn btn-primary">Start Animation</button>
+      <button id="unstyled-slider-stop" type="button" class="btn btn-primary">Stop Animation</button>
     </div>
     
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="../ga-basic-slider-0.0.0-min.js"></script>
+    <hr>
     
-    <script>
-        $('#unstyled').gaBasicSlider({
-            btnNext : $('#unstyled-next'),
-            btnPrevious : $('#unstyled-previous'),
-            indicators : $('#unstyled-indicators')
-        });
-        
-        // API
-        
-        $('#unstyled-start').on('click', function(){
-            $('#unstyled').gaBasicSlider('start');
-            $('#unstyled-alert').text('Animation is started');
-        });
+    <h2>A Designed Example <small>for reference</small></h2>
     
-        $('#unstyled-stop').on('click', function(){
-            $('#unstyled').gaBasicSlider('stop');
-            $('#unstyled-alert').text('Animation has stoped');
-        });
-    </script>
-
+    <div class="basic-slider">
+        <span id="basic-slider-previous" class="basic-slider-previous">
+            <i class="glyphicon glyphicon-menu-left"></i>
+        </span>
+        <span id="basic-slider-next" class="basic-slider-next">
+            <i class="glyphicon glyphicon-menu-right"></i>
+        </span>
+    
+        <ul id="basic-slider" class="basic-slider-items">
+            <li>
+                <span class="h3">
+                    "Hi, I'm the first slide." said the slide.
+                </span>
+            </li>
+            <li>
+                <span class="h3">
+                    The second comes later.
+                </span>
+            </li>
+            <li>
+                <span class="h3">
+                    Followed by none other then three.
+                </span>
+            </li>
+        </ul>
+     </div>
+    
+    <div id="basic-slider-indicators" class="basic-slider-indicators"></div>
+    
 </div>
 
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="../ga-basic-slider-0.0.0-min.js"></script>
+
+<script>
+    // unstyled-slider
+    
+    $('#unstyled-slider').gaBasicSlider({
+        btnNext : $('#unstyled-slider-next'),
+        btnPrevious : $('#unstyled-slider-previous'),
+        indicators : $('#unstyled-slider-indicators')
+    });
+    
+    // basic-slider
+    
+    $('#basic-slider').gaBasicSlider({
+        btnNext : $('#basic-slider-next'),
+        btnPrevious : $('#basic-slider-previous'),
+        indicators : $('#basic-slider-indicators')
+    });
+    
+    // API
+    
+    $('#unstyled-slider-start').on('click', function(){
+        $('#unstyled-slider').gaBasicSlider('start');
+        $('#basic-slider').gaBasicSlider('start');
+        $('#unstyled-slider-alert').text('Animation is on.');
+    });
+
+    $('#unstyled-slider-stop').on('click', function(){
+        $('#unstyled-slider').gaBasicSlider('stop');
+        $('#basic-slider').gaBasicSlider('stop');
+        $('#unstyled-slider-alert').text('Animation has stoped.');
+    });
+</script>
+    
 </body>
 </html>
