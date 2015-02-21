@@ -1,5 +1,5 @@
 /*!
- * gaBasicSlider v0.0.0
+ * gaBasicSlider v0.0.1
  * Licensed under the MIT license - http://opensource.org/licenses/MIT
  * 
  * Copyright (c) 2015 Greg Arutunyan
