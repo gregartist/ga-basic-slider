@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="http://gregartist.com/images/favicon.ico">
+    <title>Unstyled</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body>
+    
+<div class="container">
+    
+    <h1>Unstyled Example <small></small></h1>
+    <p class="lead">gaBasicSlider comes unstyled out of the box in-order to make it easier to incorporate into your&nbsp;existing&nbsp;design.</p>
+    
+    <hr>
+    
+    <span id="unstyled-slider-previous">&larr;</span>
+    <span id="unstyled-slider-next">&rarr;</span>
+    
+    <ul id="unstyled-slider">
+        <li>
+            <span class="btn btn-default btn-lg">
+                First slide
+            </span>
+        </li>
+        <li>
+            <span class="btn btn-default btn-lg">
+                Second slide
+            </span>
+        </li>
+        <li>
+            <span class="btn btn-default btn-lg">
+                Third slide
+            </span>
+        </li>
+    </ul>
+    
+    <div id="unstyled-slider-indicators">
+        <!-- put html here to create custom indicators -->
+    </div>
+    
+    <hr>
+    
+    <h2>gaBasicSlider has a simple API</h2>
+    <p>You can start or stop the slider using the API.</p>
+    
+    <div id="slider-alert" class="alert alert-info" role="alert"><em>Try it below</em></div>
+    
+    <div class="btn-group">
+      <button id="slider-start" type="button" class="btn btn-primary">Start Animation</button>
+      <button id="slider-stop" type="button" class="btn btn-primary">Stop Animation</button>
+    </div>
+    
+    <br><br>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="../ga-basic-slider-0.0.2-min.js"></script>
+
+<script>
+    // Unstyled slider
+    
+    $('#unstyled-slider').gaBasicSlider({
+        btnNext : $('#unstyled-slider-next'),
+        btnPrevious : $('#unstyled-slider-previous'),
+        indicators : $('#unstyled-slider-indicators')
+    });
+    
+    // API
+    
+    $('#slider-start').on('click', function(){
+         // start the slider
+        $('#unstyled-slider').gaBasicSlider('start');
+        
+        // update alert info for this example
+        $('#slider-alert').text('Animation is on.');
+    });
+
+    $('#slider-stop').on('click', function(){
+        // stop the slider
+        $('#unstyled-slider').gaBasicSlider('stop');
+        
+        // update alert info for this example
+        $('#slider-alert').text('Animation has stoped.');
+    });
+</script>
+    
+</body>
+</html>

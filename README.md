@@ -118,18 +118,18 @@ Now we pass in the next and previous buttons to gaBasicSlider.
 When using default indicators gaBasicSlider outputs this HTML for each slide.
 
 ```html
-<span class="ga-bs-indicator">&bull;</span>
+<span class="gabs-indicator">&bull;</span>
 ```
 
-The class `ga-bs-active` is added to the active indicator.
+The class `gabs-active` is added to the active indicator.
 
 ```html
 <!-- if the slider is on the second slide -->
 
 <div id="slider-indicators" class="slider-indicators">
-    <span class="ga-bs-indicator">&bull;</span>
-    <span class="ga-bs-indicator ga-bs-active">&bull;</span>
-    <span class="ga-bs-indicator">&bull;</span>
+    <span class="gabs-indicator">&bull;</span>
+    <span class="gabs-indicator gabs-active">&bull;</span>
+    <span class="gabs-indicator">&bull;</span>
 </div>
 ```
 
@@ -147,12 +147,12 @@ All you need to do to use custom indicators is just create the markup for it ins
 
 ##### Link to a URL
 
-Custom indicators can also **link to a URL instead of animating the slider**. To do this use the `data-ga-bs-bypass-url` attribute.
+Custom indicators can also **link to a URL instead of animating the slider**. To do this use the `data-gabs-bypass-url` attribute.
 
 ```html
 <div id="slider-indicators" class="slider-indicators">
     <span>Custom Indicator 1</span>
-    <span data-ga-bs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
+    <span data-gabs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
     <span>Custom Indicator 3</span>
 </div>
 ```
