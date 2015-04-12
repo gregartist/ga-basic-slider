@@ -26,8 +26,8 @@
   * - change touchBounceBackThreshold to percentage from pixels
   * - learn about setting up automatic tests
   * - change animations so they're the same for touch and mouse
-  * - API initiated stop animation should not start up on mouseover
   * - Make infinite looping slider navigation an option
+  * - add bounce to slide when indicator of current slide is clicked
   */
 
 (function($) {
@@ -476,7 +476,11 @@
          * Expose stop and start animation methods
          */
   
-        this.stop = stopAnimation;
+        this.stop = function() {
+                settings.animate = false;
+                stopAnimation();
+            };
+            
         this.start = function() {
                 // Start or restart the animation
                 settings.animate = true;
