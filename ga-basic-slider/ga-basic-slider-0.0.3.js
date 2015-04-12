@@ -26,8 +26,8 @@
   * - change touchBounceBackThreshold to percentage from pixels
   * - learn about setting up automatic tests
   * - change animations so they're the same for touch and mouse
-  * - API initiated stop animation should not start up on mouseover
   * - Make infinite looping slider navigation an option
+  * - add bounce to slide when indicator of current slide is clicked
   */
 
 (function($) {
@@ -370,14 +370,17 @@
                                      'top' : '0',
                                     'left' : '0',
              '-webkit-backface-visibility' : 'hidden'
-            })
+            });
             
             // prevent slider from collapsing
-            $children.eq(0).css('position' , 'relative');
+            $children.eq(0).css({
+                'position' : 'relative'
+            });
             
             // set initial slide positions
             
             if(browser.transitions && browser.touch) {
+                // if the browser supports touch and css animation
                 $children.each(function(index){
                     $(this).css({'-webkit-transform' : 'translate3d(' + index * 100 + '%, 0, 0)',
                                     '-moz-transform' : 'translate3d(' + index * 100 + '%, 0, 0)',
@@ -387,7 +390,7 @@
                     });
                 });
             } else {
-                
+                // else every other browser
                 $children.each(function(index){
                     $(this).css({'left' : index * 100 + '%'});
                 });
@@ -473,7 +476,11 @@
          * Expose stop and start animation methods
          */
   
-        this.stop = stopAnimation;
+        this.stop = function() {
+                settings.animate = false;
+                stopAnimation();
+            };
+            
         this.start = function() {
                 // Start or restart the animation
                 settings.animate = true;

@@ -10,9 +10,9 @@ If you want to design your own slider and can build it in html and css, gaBasicS
 
 **Note worthy features:**
 
-- Responsive
 - Touch navigation
-- Hardware accelerated animation
+- Customize behavior - modular parts
+- Add to existing designs
 
 ## A typical setup
 
