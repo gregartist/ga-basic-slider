@@ -90,7 +90,7 @@ At this point we can turn the slider on with the following JavaScript.
 
 gaBasicSlider can add optional navigation elements, one of which is next and previous buttons.
 
-#### Adding next and previous buttons
+#### Next and previous buttons
 
  I leave the position and look of these buttons entirely up to you, all gaBasicSlider does is add click handlers.
 
