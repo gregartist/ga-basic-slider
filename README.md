@@ -23,9 +23,9 @@ $('#slider').gaBasicSlider('stop'); // turn animation off
 $('#slider').gaBasicSlider('start');; // turn animation on
 ```
 
-## gaBasicSlider options
+## Options
 
-This table shows each option of gaBasicSlider as well as the variable type of each option and what it's value will default too it the option is omitted.
+This table shows each gaBasicSlider option as well as the variable type of each option and what it's value will default too if omitted.
 
 | Option                   | Type                  | Default       |
 | :----------------------- |:--------------------- | :------------ |
