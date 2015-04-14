@@ -90,7 +90,7 @@ At this point we can turn the slider on with the following JavaScript.
 
 gaBasicSlider can add optional navigation elements, one of which is next and previous buttons.
 
-#### Next and previous buttons
+#### Adding next and previous buttons
 
  I leave the position and look of these buttons entirely up to you, all gaBasicSlider does is add click handlers.
 
@@ -121,6 +121,14 @@ By default gaBasicSlider outputs this HTML for each indicator.
 
 ```html
 <span class="gabs-indicator">&bull;</span>
+
+<!-- This is what the generated html could look like -->
+
+<div id="slider-indicators" class="your-styles">
+    <span class="gabs-indicator">&bull;</span>
+    <span class="gabs-indicator">&bull;</span>
+    <span class="gabs-indicator">&bull;</span>
+</div>
 ```
 
 The class `gabs-active` is added to the active indicator.
@@ -129,24 +137,14 @@ The class `gabs-active` is added to the active indicator.
 <span class="gabs-indicator gabs-active">&bull;</span>
 ```
 
-Generated indicators are appended to the indicator element
-
-```html
-<div id="slider-indicators" class="your-styles">
-    <span class="gabs-indicator">&bull;</span>
-    <span class="gabs-indicator">&bull;</span>
-    <span class="gabs-indicator">&bull;</span>
-</div>
-```
-
 #### Custom Indicators
 
-All you need to do to use custom indicators is just create the markup for it inside your indicator element. When gaBasicSlider sees you've created markup for the indicators it will only attach click handlers. *Note* when using custom indicators **your responsible for making sure the number of indicators match the number of slides**.
+All you need to do to use custom indicators is just create the markup for it inside your indicator element. When gaBasicSlider sees you've created markup for the indicators it will only attach click handlers. **Note** when using custom indicators **your responsible for making sure the number of indicators match the number of slides**.
 
 ```html
 
 <div id="slider-indicators" class="your-styles">
-    <!-- create the mark for your custom indicators here -->
+    <!-- create the markup for your custom indicators here -->
 </div>
 
 <div id="slider-indicators" class="your-styles">
