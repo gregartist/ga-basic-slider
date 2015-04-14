@@ -19,11 +19,11 @@ If you want to design your own slider and can build it in html and css, gaBasicS
 In the following text I'll breakdown this code into it's individual parts.
 
 ```html
-<div class="slider">
+<div class="slider-container">
     <span id="slider-previous" class="slider-previous">&larr;</span>
     <span id="slider-next" class="slider-next">&rarr;</span>
 
-    <ul id="slider" class="slider-items">
+    <ul id="slider" class="slider">
         <li>...</li>
         <li>...</li>
         <li>...</li>
@@ -46,7 +46,7 @@ In the following text I'll breakdown this code into it's individual parts.
 First let's look at the markup for the slider itself.
 
 ```html
-<ul id="slider" class="slider-items">
+<ul id="slider" class="slider">
     <li>...</li>
     <li>...</li>
     <li>...</li>
@@ -58,7 +58,7 @@ gaBasicSlider needs the slider markup to have a parent child relationship with t
 ```html
 <!-- Divs would work just as well -->
 
-<div id="slider" class="slider-items">
+<div id="slider" class="slider">
     <div>...</div>
     <div>...</div>
     <div>...</div>
