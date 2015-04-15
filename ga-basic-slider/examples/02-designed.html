@@ -9,7 +9,7 @@
     <style type="text/css" media="screen">
         /* Basic slider */
         
-        .basic-slider {
+        .basic-slider-container {
             position: relative;
         }
         
@@ -40,8 +40,8 @@
             border-radius: 3px 0 0 3px;
         }
         
-        .basic-slider:hover .basic-slider-previous,
-        .basic-slider:hover .basic-slider-next {
+        .basic-slider-container:hover .basic-slider-previous,
+        .basic-slider-container:hover .basic-slider-next {
             display: block;
         }
         
@@ -58,17 +58,17 @@
         
         /* the slides */
         
-        .basic-slider-items li {
+        .basic-slider li {
             background: #AB9A52;
             border-radius: 3px;
             text-align: center;
         }
         
-        .basic-slider-items li:nth-child(2) {
+        .basic-slider li:nth-child(2) {
             background: #E8BA67;
         }
         
-        .basic-slider-items li:nth-child(3) {
+        .basic-slider li:nth-child(3) {
             background: #D68F4F;
         }
         
@@ -120,7 +120,7 @@
     
     <hr>
     
-    <div class="basic-slider">
+    <div class="basic-slider-container">
         <span id="basic-slider-previous" class="basic-slider-previous">
             <i class="glyphicon glyphicon-menu-left"></i>
         </span>
@@ -128,7 +128,7 @@
             <i class="glyphicon glyphicon-menu-right"></i>
         </span>
     
-        <ul id="basic-slider" class="basic-slider-items">
+        <ul id="basic-slider" class="basic-slider">
             <li>
                 <div class="basic-slider-item">
                     <span class="h3">
@@ -172,7 +172,7 @@
 
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="../ga-basic-slider-0.0.3-min.js"></script>
+<script src="../ga-basic-slider-0.0.4-min.js"></script>
 
 <script>
     // Basic slider
