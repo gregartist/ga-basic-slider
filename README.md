@@ -9,7 +9,7 @@ If you want to design your own slider and can build it in html and css, gaBasicS
 - [Simple API](#simple-api)
 - [Parameters](#parameters)
 
-**Note worthy features:**
+**Noteworthy features:**
 
 - 1.8KB gzipped
 - Touch support
