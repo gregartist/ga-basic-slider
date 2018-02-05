@@ -1,131 +1,110 @@
 # gaBasicSlider
-
-A jQuery slider plug-in that's made to be **styleable**.
-
-```javascript
-$('#slider').gaBasicSlider();
-```
+A vanilla javascript slider plug-in that's made to be **styleable**.
 
 If you want to design your own slider and can build it in html and css, gaBasicSlider can animate it and give you API controls into your own design.
 
+## Contents
+\+ [How it works](#how-it-works)
+\+ [Simple API](#simple-api)
+\+ [Parameters](#parameters)
+
 **Note worthy features:**
 
-- Touch navigation
-- Customize behavior - modular parts
-- Add to existing designs
-
-## Simple API
-
-Animation can be turned on and off using this simple API.
-
-```javascript
-$('#slider').gaBasicSlider('stop'); // turn animation off
-$('#slider').gaBasicSlider('start');; // turn animation on
-```
-
-## Options
-
-This table shows each gaBasicSlider option as well as the variable type of each option and what it's value will default too if omitted.
-
-| Option                   | Type                  | Default       |
-| :----------------------- |:--------------------- | :------------ |
-| animate                  | boolean               | true          |
-| animationDelay           | number (milliseconds) | 6000          |
-| animationTime            | number (milliseconds) | 300           |
-| indicators               | object (jQuery)       | null          |
-| btnNext                  | object (jQuery)       | null          |
-| btnPrevious              | object (jQuery)       | null          |
-
-Here is what it looks like when we set the options in JavaScript.
-
-```javascript
-$('#slider').gaBasicSlider({
-    animate : true,
-    animationDelay : 6000,
-    animationTime : 300,
-    indicators : $('#slider-indicators'),
-    btnNext : $('#slider-next'),
-    btnPrevious : $('#slider-previous')
-});
-```
+- 1.8KB gzipped
+- Touch support
+- Parallax animation
+- Move parts around to fit your design
+- Infinite looping navigation
 
 ## How it works
 
-gaBasicSlider takes in an unordered list and animates them going from left to right. You can optionally pass in selectors for next and previous buttons. gaBasicSlider also takes in a selector where it can either generate indicators or use your existing indicators.
+gaBasicSlider takes in markup that have a parent child relationship and animates them with a simple parallax effect. You can optionally pass in nodes for next and previous buttons. gaBasicSlider also takes in a node where it can either generate indicators or use your existing markup as indicators.
 
 ### The slider markup
 
 First let's look at the markup for the slider itself.
 
 ```html
-<ul id="slider" class="your-styles">
+<!-- div -->
+<div id="slider" class="your-slider-styles">
+    <div>...</div>
+    <div>...</div>
+    <div>...</div>
+</div>
+
+<!-- or ul -->
+<ul id="slider" class="your-slider-styles">
     <li>...</li>
     <li>...</li>
     <li>...</li>
 </ul>
 ```
 
-gaBasicSlider needs the slider markup to have a parent child relationship. **Note** You can use divs if that best suits your needs.
-
-```html
-<!-- Divs would work just as well -->
-
-<div id="slider" class="your-styles">
-    <div>...</div>
-    <div>...</div>
-    <div>...</div>
-</div>
-```
-gaBasicSlider adds the minimum amount of CSS to position the slides on top of each other and too animate between them.
+gaBasicSlider adds the minimum amount of CSS to position the slides on top of each other and to animate between them.
 
 At this point we can turn the slider on with the following JavaScript.
 
 ```html
 <script>
-    $('#slider').gaBasicSlider();
+    var params = {
+        slider: document.getElementById('slider'),
+    };
+
+    mySlider = new gaBasicSlider(params);
 </script>
 ```
 
-### Adding navigation
-
-gaBasicSlider can add optional navigation elements, one of which is next and previous buttons.
-
-#### Next and previous buttons
+### Next and previous buttons
 
  I leave the position and look of these buttons entirely up to you, all gaBasicSlider does is add click handlers.
 
 ```html
+<div class="your-slider-wrapper">
+    <!-- buttons -->
+    <button id="sliderPrevious" class="your-btn-styles">&larr;</button>
+    <button id="sliderNext" class="your-btn-styles">&rarr;</button>
+
+    <!-- slider -->
+    <ul id="slider" class="your-slider-styles">
+        <li>...</li>
+        <li>...</li>
+        <li>...</li>
+    </ul>
+</div>
+
 <script>
-    $('#slider').gaBasicSlider({
-        btnNext : $('#your-next-button'),
-        btnPrevious : $('#your-previous-button'))
-    });
+    var params = {
+        slider: document.getElementById('slider'),
+        btnNext: document.getElementById('sliderNext'), // Next
+        btnPrevious: document.getElementById('sliderPrevious'), // Previous
+    };
+
+    mySlider = new gaBasicSlider(params);
 </script>
 ```
 
-#### Indicators
+### Indicators
 
-Pass in an empty element to use for indicators
+You can pass in an empty element where you want gaBasicSlider to genereate indicators.
 
 ```html
-<div id="slider-indicators" class="your-styles"></div>
+<div id="sliderIndicators" class="your-indicator-styles"></div>
 
 <script>
-    $('#slider').gaBasicSlider({
-        indicators : $('#slider-indicators')
-    });
+    var params = {
+        slider: document.getElementById('slider'),
+        indicators: document.getElementById('sliderIndicators') // Indicators
+    };
+
+    mySlider = new gaBasicSlider(params);
 </script>
 ```
 
-By default gaBasicSlider outputs this HTML for each indicator.
+This is what the generated html will look like for a slider with three slides.
 
 ```html
-<span class="gabs-indicator">&bull;</span>
-
-<!-- This is what the generated html could look like -->
-
-<div id="slider-indicators" class="your-styles">
-    <span class="gabs-indicator">&bull;</span>
+<div id="sliderIndicators" class="your-indicator-styles">
+    <span class="gabs-indicator gabs-active">&bull;</span> 
     <span class="gabs-indicator">&bull;</span>
     <span class="gabs-indicator">&bull;</span>
 </div>
@@ -133,36 +112,55 @@ By default gaBasicSlider outputs this HTML for each indicator.
 
 The class `gabs-active` is added to the active indicator.
 
-```html
-<span class="gabs-indicator gabs-active">&bull;</span>
-```
-
-#### Custom Indicators
+### Custom Indicators
 
 All you need to do to use custom indicators is just create the markup for it inside your indicator element. When gaBasicSlider sees you've created markup for the indicators it will only attach click handlers. **Note** when using custom indicators **your responsible for making sure the number of indicators match the number of slides**.
 
 ```html
-
-<div id="slider-indicators" class="your-styles">
-    <!-- create the markup for your custom indicators here -->
-</div>
-
 <div id="slider-indicators" class="your-styles">
     <!-- gaBasicSlider will use your indicators instead of creating it's own -->
-    <span>Custom Indicator 1</span>
+    <span class="gabs-active">Custom Indicator 1</span>
     <span>Custom Indicator 2</span>
     <span>Custom Indicator 3</span>
 </div>
 ```
 
-##### Link to a URL
+The class `gabs-active` will be added to your custome indicators as well.
 
-Custom indicators can also **link to a URL instead of animating the slider**. To do this use the `data-gabs-bypass-url` attribute.
+## Simple API
 
-```html
-<div id="slider-indicators" class="your-styles">
-    <span>Custom Indicator 1</span>
-    <span data-gabs-bypass-url="http://www.any-url.com">Custom Indicator 2</span>
-    <span>Custom Indicator 3</span>
-</div>
+Animation can be turned on and off using this simple API.
+
+```javascript
+mySlider = new gaBasicSlider(params);
+
+mySlider.stop() // turn animation off
+mySlider.start() // turn animation on
+```
+
+## Parameters
+
+This table shows each gaBasicSlider parameter as well as the variable type of each parameter and what it's value will default to if omitted.
+
+| Parameter                | Type                  | Default       |
+| :----------------------- |:--------------------- | :------------ |
+| slider                   | Node                  | null          |
+| indicators               | Node                  | null          |
+| btnNext                  | Node                  | null          |
+| btnPrevious              | Node                  | null          |
+| animate                  | Boolean               | true          |
+| animationDelay           | Number (milliseconds) | 6000          |
+| animationDuration        | Number (milliseconds) | 300           |
+
+Here is what it looks like when we set the options in JavaScript.
+
+```javascript
+var params = {
+    slider: document.getElementById('slider'),
+    btnNext: document.getElementById('sliderNext'),
+    btnPrevious: document.getElementById('sliderPrevious'),
+    indicators: document.getElementById('sliderIndicators')
+};
+
+mySlider = new gaBasicSlider(params);
 ```
