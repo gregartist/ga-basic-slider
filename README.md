@@ -1,12 +1,13 @@
 # gaBasicSlider
-A vanilla javascript slider plug-in that's made to be **styleable**.
+A vanilla JavaScript slider plug-in that's made to be **styleable**.
 
-If you want to design your own slider and can build it in html and css, gaBasicSlider can animate it and give you API controls into your own design.
+If you want to design your own slider and can build it in html and css, gaBasicSlider can animate it and give you API controls into your own design. See [working example](http://gregartist.github.io/ga-basic-slider/).
+
 
 ## Contents
-\+ [How it works](#how-it-works)
-\+ [Simple API](#simple-api)
-\+ [Parameters](#parameters)
+- [How it works](#how-it-works)
+- [Simple API](#simple-api)
+- [Parameters](#parameters)
 
 **Note worthy features:**
 
