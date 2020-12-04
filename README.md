@@ -165,3 +165,22 @@ var params = {
 
 mySlider = new gaBasicSlider(params);
 ```
+## Events
+
+Events are dispatched when the slider is initiated, started, and stoped. You can listen for them by adding event listeners
+
+```javascript
+var slider = document.getElementById('mySlider');
+
+slider.addEventListener('initiated', function (e) {
+    // called when initiated
+}, false);
+
+slider.addEventListener('start', function (e) {
+    // called when animation is started
+}, false);
+
+slider.addEventListener('stop', function (e) {
+    // called when animation is stopped';
+}, false);
+```

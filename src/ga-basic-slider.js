@@ -1,13 +1,9 @@
 /*!
- * gaBasicSlider v1.0.0
+ * gaBasicSlider v1.0.1
  * Licensed under the MIT license - http://opensource.org/licenses/MIT
  * 
  * Copyright (c) 2018 Greg Arutunyan
  */
-
- /**
-  * @todo create events for init, animation starts and stops
-  */
 
 ;(function(){
     if(window.gaBasicSlider)
@@ -109,6 +105,11 @@
                 slider.children[i].style.zIndex = '1';
             }
         }
+
+        // dispatch initiated event
+        var event = new Event('initiated');
+        slider.dispatchEvent(event);
+        
     }
 
     function addSliderEventHandlers(instance) {
@@ -208,15 +209,29 @@
     function startAnimation(instance) {
         if(instance.params.animate) {
             stopAnimation(instance);
+
             instance.interval = setInterval(function(){
                 slideToIndex(instance, {toIndex : getNextIndex(instance)});
             }, instance.params.animationDelay)
+
+            // start animation event
+            var event = new Event('start');
+            instance.params.slider.dispatchEvent(event);
         }
     }
 
     function stopAnimation(instance) {
-        clearInterval(instance.interval);
-        clearInterval(instance.timeout);
+        if(instance.interval || instance.timeout) {
+            clearInterval(instance.interval);
+            clearInterval(instance.timeout);
+
+            instance.interval = null;
+            instance.timeout = null;
+
+            // stop animation event
+            var event = new Event('stop');
+            instance.params.slider.dispatchEvent(event);
+        }
     }
 
     function getPreviousIndex(instance) {

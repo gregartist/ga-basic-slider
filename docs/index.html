@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h1>gaBasicSlider</h1>
-                <p class="lead">Take notice of how the next previous buttons and indicators can be moved around the document, giving you the freedom to design the slider any way you choose. <!--Take a look at some <a href="">design ideas</a>.--></p>
+                <p class="lead">Take notice that I have deliberately moved next previous buttons and indicators below the slider. I did this to demonstrate the freedom that you will have when designing your own slider. <!--Take a look at some <a href="">design ideas</a>.--></p>
                 <pre><code class="language-html">&lt;!-- Can be DIV or UL structures --&gt;&#10;&lt;ul id=&quot;mySlider&quot; class=&quot;my-slider&quot;&gt;&#10;    &lt;li style=&quot;background-image: url(&apos;images/branches.jpg&apos;)&quot;&gt;One&lt;/li&gt;&#10;    &lt;li style=&quot;background-image: url(&apos;images/flower.jpg&apos;)&quot;&gt;Two&lt;/li&gt;&#10;    &lt;li style=&quot;background-image: url(&apos;images/shack.jpg&apos;)&quot;&gt;Three&lt;/li&gt;&#10;    &lt;li style=&quot;background-image: url(&apos;images/waterfall.jpg&apos;)&quot;&gt;Four&lt;/li&gt;&#10;&lt;/ul&gt;</code></pre>
             </div>
         </div>
@@ -56,7 +56,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <!-- <div class="alert alert-info" role="alert"><strong>Events:</strong> Slider initiated</div> -->
+                <div class="alert alert-info" role="alert">
+                    <strong>Events:</strong>
+                    <span id="initEvent"></span>
+                    <span id="animationState"></span>
+                </div>
 
                 <h2>Next and previous buttons</h2>
                 <p class="help-block">Click the buttons to see the effect on the slider.</p>
@@ -87,7 +91,7 @@
                 <pre><code class="language-css">&lt;style&gt;&#10;    /* .gabs-initiated is added to the slider element when it&apos;s initiated */&#10;    .my-slider.gabs-initiated ~ .my-previous,&#10;    .my-slider.gabs-initiated ~ .my-next {&#10;        display: block;&#10;    }&#10;&#10;    /* .gabs-indicator is added to the indicator root element */&#10;    .gabs-indicator {&#10;        font-size: 30px;&#10;        padding: 10px;&#10;    }&#10;    &#10;    /* .gabs-active is added to the active indicator child element */&#10;    .gabs-active {&#10;        color: red;&#10;    }&#10;&lt;/style&gt;</code></pre>
                 
                 <h2>The JavaScript</h2>
-                <pre><code class="language-javascript">&lt;script&gt;&#10;    var params = {&#10;        slider: document.getElementById(&apos;mySlider&apos;),&#10;        btnNext: document.getElementById(&apos;myNext&apos;),&#10;        btnPrevious: document.getElementById(&apos;myPrevious&apos;),&#10;        indicators: document.getElementById(&apos;myIndicators&apos;)&#10;    };&#10;&#10;    mySlider = new gaBasicSlider(params);&#10;&lt;/script&gt;</code></pre>
+                <pre><code class="language-javascript">&lt;script&gt;&#10;    var params = {&#10;        slider: document.getElementById(&apos;mySlider&apos;),&#10;        btnNext: document.getElementById(&apos;myNext&apos;),&#10;        btnPrevious: document.getElementById(&apos;myPrevious&apos;),&#10;        indicators: document.getElementById(&apos;myIndicators&apos;)&#10;    };&#10;&#10;    var mySlider = new gaBasicSlider(params);&#10;&lt;/script&gt;</code></pre>
 
                 <h3>Parameter details</h3>
                 <table class="table table-bordered table-striped">
@@ -137,35 +141,59 @@
                     </tbody>
                 </table>
 
-                <h3>Methods <small>start and stop animation</small></h3>
+                <h3>Methods <small>start and stop animation of the demo slider at the top of this page</small></h3>
                 <button id="myStart" class="btn btn-default">Start</button>
                 <button id="myStop" class="btn btn-default">Stop</button>
                 <pre><code class="language-javascript">&lt;script&gt;&#10;    // mySlider.start()&#10;    document.getElementById(&apos;myStart&apos;).addEventListener(&apos;click&apos;, mySlider.start);&#10;&#10;    // mySlider.stop();&#10;    document.getElementById(&apos;myStop&apos;).addEventListener(&apos;click&apos;, mySlider.stop);&#10;&lt;/script&gt;</code></pre>
 
-                <!-- <h3>Events</h3>
-                <p>&hellip;</p> -->
+                <h3>Events <small>dispatched when the slider is initiated, started, and stoped.</small></h3>
+                <pre><code class="language-javascript">&lt;script&gt;&#10;    var slider = document.getElementById(&apos;mySlider&apos;);&#10;&#10;    slider.addEventListener(&apos;initiated&apos;, function (e) {&#10;        // called when initiated&#10;    }, false);&#10;&#10;    slider.addEventListener(&apos;start&apos;, function (e) {&#10;        // called when animation is started&#10;    }, false);&#10;&#10;    slider.addEventListener(&apos;stop&apos;, function (e) {&#10;        // called when animation is stopped&apos;;&#10;    }, false);&#10;&lt;/script&gt;</code></pre>
             </div>
         </div>
     </div>
     
-    <script src="js/ga-basic-slider-1.0.0-min.js"></script>
+    <script src="../dist/ga-basic-slider-1.0.1.js"></script>
 
     <script>
+        // slider element
+        var slider = document.getElementById('mySlider');
+
+        // demo elements
+        var initEvent = document.getElementById('initEvent');
+        var animationState = document.getElementById('animationState');
+
+        // events
+
+        slider.addEventListener('initiated', function (e) {
+            initEvent.innerHTML = 'initiated';
+        }, false);
+
+        slider.addEventListener('start', function (e) {
+            animationState.innerHTML = ', animation started';
+        }, false);
+
+        slider.addEventListener('stop', function (e) {
+            animationState.innerHTML = ', animation stopped';
+        }, false);
+
+        // init slider
+        
         var params = {
-            slider: document.getElementById('mySlider'),
+            slider: slider,
             btnNext: document.getElementById('myNext'),
             btnPrevious: document.getElementById('myPrevious'),
             indicators: document.getElementById('myIndicators')
         };
 
-        mySlider = new gaBasicSlider(params);
+        var mySlider = new gaBasicSlider(params);
+        
+        // methods
 
-        // mySlider.start()
+        // this calls mySlider.start()
         document.getElementById('myStart').addEventListener('click', mySlider.start);
 
-        // mySlider.stop();
+        // this calls mySlider.stop();
         document.getElementById('myStop').addEventListener('click', mySlider.stop);
-
     </script>
 </body>
 </html>
